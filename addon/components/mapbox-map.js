@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import layout from '../templates/components/mapbox-map';
-import { MAP_EVENTS } from '../constants/events';
+import {
+  MAP_EVENTS
+} from '../constants/events';
 
 export default Ember.Component.extend({
   layout: layout,
@@ -10,7 +12,10 @@ export default Ember.Component.extend({
 
   setup: Ember.on('didInsertElement', function() {
     Ember.run.scheduleOnce('afterRender', this, function() {
-      let map = L.mapbox.map(this.get('divId'), this.get('mapId'));
+      let mapId = this.get('mapId');
+      let divId = this.get('divId');
+
+      let map = L.mapbox.map(divId, mapId);
 
       // Bind Events
       MAP_EVENTS.forEach((event) => {
@@ -20,6 +25,11 @@ export default Ember.Component.extend({
       // Setters
       if (this.get('center')) {
         map.setView(this.get('center'), this.get('zoom'));
+      }
+
+      let styleLayer = this.get('styleLayer');
+      if (styleLayer) {
+        L.mapbox.styleLayer(styleLayer).addTo(map);
       }
 
       if (this.get('click')) {

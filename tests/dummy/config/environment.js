@@ -14,7 +14,7 @@ module.exports = function(environment) {
     },
 
     mapbox: {
-      accessToken: 'pk.eyJ1IjoiZW1iZXItY2xpLW1hcGJveCIsImEiOiIxMGZiNjA5NWJlNWY2OWRmMWQ3OGExNTkwMzM5NDRiMCJ9.0Vt2Lduj_gUQ0nnSBWIUkA'
+      accessToken: 'pk.eyJ1IjoiemlueWFuZG8iLCJhIjoiY2l0MDNyYzB4MGt3NzJwa2gzaHhpNm04dCJ9.tPbE8RGnL9h3T2XuSES_CA'
     },
 
     APP: {
