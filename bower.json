@@ -6,7 +6,7 @@
     "ember-cli-test-loader": "0.2.2",
     "ember-qunit-notifications": "0.1.0",
     "jquery": "1.11.3",
-    "mapbox.js": "2.3.0",
+    "mapbox.js": "2.4.0",
     "leaflet.markerclusterer": "0.4.0"
   },
   "resolutions": {
