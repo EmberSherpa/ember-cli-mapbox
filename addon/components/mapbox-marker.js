@@ -1,6 +1,12 @@
 import Ember from 'ember';
 import layout from '../templates/components/mapbox-marker';
-import { MARKER_EVENTS } from '../constants/events';
+import {
+  MARKER_EVENTS
+} from '../constants/events';
+
+const {
+  computed
+} = Ember;
 
 export default Ember.Component.extend({
   classNameBindings: ['isLoaded'],
@@ -39,7 +45,7 @@ export default Ember.Component.extend({
     }
   }),
 
-  setup: Ember.on('init', function() {
+  marker: computed(function() {
     let marker = L.marker(this.get('coordinates'), {
       icon: L.mapbox.marker.icon({
         'marker-color': this.get('color'),
@@ -48,13 +54,12 @@ export default Ember.Component.extend({
       }),
       draggable: this.get('draggable')
     });
-    marker.bindPopup(this.get('popup-title'));
 
     MARKER_EVENTS.forEach((event) => {
       marker.on(event, (e) => this.sendAction('on' + event, marker, e));
     });
 
-    this.set('marker', marker);
+    return marker;
   }),
 
   teardown: Ember.on('willDestroyElement', function() {
