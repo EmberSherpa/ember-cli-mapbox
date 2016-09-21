@@ -5,11 +5,18 @@
   mapId='ember-cli-mapbox.7c3914f2' as |map|
 }}
   {{#each model as |position|}}
-    {{#mapbox-marker map=map coordinates=(mapbox-coords position.lat position.lng) as |marker|}}
-      {{#marker.popup}}
-          hello world right {{position.name}}
-          <span class="star"></span>
-      {{/marker.popup}}
+    {{#mapbox-marker
+        map=map
+        coordinates=(mapbox-coords position.lat position.lng)
+        onclick=(action 'toggleMarker' position)
+        as |marker|
+      }}
+      {{#if (eq openMarker position)}}
+        {{#marker.popup onclose=(action 'closeMarker' position)}}
+            hello world right {{position.name}}
+            <span class="star"></span>
+        {{/marker.popup}}
+      {{/if}}
     {{/mapbox-marker}}
   {{/each}}
 {{/mapbox-map}}
