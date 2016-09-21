@@ -29,8 +29,8 @@ export default Ember.Component.extend({
   willDestroyElement() {
     this._super(...arguments);
 
+    this.get('marker').off('popupclose', this._closeMarker);
     this.get('marker').closePopup();
     this.get('marker').unbindPopup(this.element);
-    this.get('marker').off('popupclose', this._closeMarker);
   }
 });
