@@ -25,6 +25,7 @@ export default Ember.Component.extend({
       // Setters
       if (this.get('center')) {
         map.setView(this.get('center'), this.get('zoom'));
+        this.set('lastCenter', this.get('center'));
       }
 
       let styleLayer = this.get('styleLayer');
@@ -45,5 +46,16 @@ export default Ember.Component.extend({
       // Set
       this.set('map', map);
     });
-  })
+  }),
+
+  didUpdateAttrs() {
+    this._super(...arguments);
+
+    let center = this.get('center');
+    let lastCenter = this.get('lastCenter');
+    if (center !== lastCenter) {
+      this.get('map').setView(center, this.get('zoom'));
+      this.set('lastCenter', center);
+    }
+  }
 });
