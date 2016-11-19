@@ -1,5 +1,6 @@
 {
   "preset": "ember-suave",
+  "disallowDirectPropertyAccess": null,
   "requireBlocksOnNewline": null,
   "requireCamelCaseOrUpperCaseIdentifiers": null,
   "requireEnhancedObjectLiterals": null,
