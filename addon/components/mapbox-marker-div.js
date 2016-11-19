@@ -7,8 +7,8 @@ export default Ember.Component.extend({
   layout: layout,
   className: '',
   html: '',
-  width: 40,
-  height: 40,
+  width: '',
+  height: '',
   marker: null,
   draggable: false,
 
