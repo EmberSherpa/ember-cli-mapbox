@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import layout from '../templates/components/mapbox-marker';
-import { MARKER_EVENTS } from '../constants/events';
+import {
+  MARKER_EVENTS
+} from '../constants/events';
 
 export default Ember.Component.extend({
   classNameBindings: ['isLoaded'],
@@ -34,29 +36,28 @@ export default Ember.Component.extend({
     let marker = this.get('marker');
     if (typeof map !== 'undefined' && marker != null) {
       marker.setIcon(L.divIcon({
-          // specify a class name that we can refer to in styles
-          className: this.get('className'),
-          // html here defines what goes in the div created for each marker
-          html: this.get('html'),
-          // and the marker width and height
-          iconSize: [this.get('width'), this.get('height')]
-        }));
+        // specify a class name that we can refer to in styles
+        className: this.get('className'),
+        // html here defines what goes in the div created for each marker
+        html: this.get('html'),
+        // and the marker width and height
+        iconSize: [this.get('width'), this.get('height')]
+      }));
     }
   }),
 
   setup: Ember.on('init', function() {
     let marker = L.marker(this.get('coordinates'), {
       icon: L.divIcon({
-          // specify a class name that we can refer to in styles
-          className: this.get('className'),
-          // html here defines what goes in the div created for each marker
-          html: this.get('html'),
-          // and the marker width and height
-          iconSize: [this.get('width'), this.get('height')]
-        }),
+        // specify a class name that we can refer to in styles
+        className: this.get('className'),
+        // html here defines what goes in the div created for each marker
+        html: this.get('html'),
+        // and the marker width and height
+        iconSize: [this.get('width'), this.get('height')]
+      }),
       draggable: this.get('draggable')
     });
-    marker.bindPopup(this.get('popup-title'));
 
     MARKER_EVENTS.forEach((event) => {
       marker.on(event, (e) => this.sendAction('on' + event, marker, e));
