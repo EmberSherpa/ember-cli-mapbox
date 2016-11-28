@@ -71,11 +71,11 @@ export default Ember.Component.extend({
   }),
 
   popup: Ember.on('didRender', function() {
-    if (this.get('is-open')) {
-      this.get('marker').openPopup();
-      if (this.get('recenter')) {
-        this.get('map').setView(this.get('coordinates'));
-      }
-    }
+    // if (this.get('is-open')) {
+    //   this.get('marker').openPopup();
+    //   if (this.get('recenter')) {
+    //     this.get('map').setView(this.get('coordinates'));
+    //   }
+    // }
   })
 });
